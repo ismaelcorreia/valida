@@ -37,6 +37,6 @@ ___
    git clone https://github.com/ismaelcorreia/valida.git
    cd valida
 ___
-> #### Desenvolvido com ❤️ em Angola por Ismael Correia.
+> #### Desenvolvido com ❤️ por Ismael Correia.
 
 

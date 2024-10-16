@@ -34,7 +34,7 @@ ___
 1. **Clonar o Repositório**
 
    ```bash
-   git clone https://github.com/seu-usuario/valida.git
+   git clone https://github.com/ismaelcorreia/valida.git
    cd valida
 ___
 > #### Desenvolvido com ❤️ em Angola por Ismael Correia.

@@ -1,4 +1,4 @@
-# Valida 
+# Valida
 <img src="logo.png" width="100" style="display: inline" alt="logo"/>
 
 ___
@@ -20,6 +20,7 @@ ___
 - **Backend**: Java Spring Boot
 - **Bibliotecas**: Apache PDFBox, BouncyCastle, iText
 - **API**: RESTful API
+
 ___
 ## Instalação
 
@@ -36,7 +37,3 @@ ___
    ```bash
    git clone https://github.com/ismaelcorreia/valida.git
    cd valida
-___
-> #### Desenvolvido com ❤️ por Ismael Correia.
-
-

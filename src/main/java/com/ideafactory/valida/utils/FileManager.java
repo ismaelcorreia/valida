@@ -78,7 +78,12 @@ public class FileManager {
 
 
     public String extractTextFromPdf(String filePath) {
-        try (PDDocument document = PDDocument.load(new File(filePath))) {
+        return extractTextFromPdf(new File(filePath));
+    }
+
+
+    public String extractTextFromPdf(File file) {
+        try (PDDocument document = PDDocument.load(file)) {
             PDFTextStripper pdfStripper = new PDFTextStripper();
             return pdfStripper.getText(document);
         } catch (IOException e) {

@@ -1,0 +1,36 @@
+.toggles {
+  cursor: pointer;
+  width: 80px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: $surface-color;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s;
+
+  &:hover > #thToggle {
+    box-shadow: 0 0 10px #0a0a0a52;
+  }
+  > #thToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: $primary-color;
+    transition: all 0.4s;
+    margin-left: 47px;
+    i{ 
+      color: white;
+    }
+    &.active {
+      margin-left: 4px;
+    }
+  }
+
+}
+
+.header{
+    padding: 20px;
+}

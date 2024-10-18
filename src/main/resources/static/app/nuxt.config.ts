@@ -31,6 +31,8 @@ export default defineNuxtConfig({
         include: '*', 
     },
   },
+
+  css: ['~/assets/styles/main.scss'],
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
 });

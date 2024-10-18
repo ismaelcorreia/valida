@@ -1,6 +1,7 @@
 package com.ideafactory.valida.controllers;
 
 import com.ideafactory.valida.dto.ValidationReceiptResponse;
+import com.ideafactory.valida.services.BAIDirectoReceiptService;
 import com.ideafactory.valida.services.MulticaixaExpressRecieptService;
 import com.ideafactory.valida.utils.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/express")
-public class ExpressController {
+@RequestMapping("/bai")
+public class BAiController {
     @Autowired
-    private MulticaixaExpressRecieptService service;
+    private BAIDirectoReceiptService service;
     @Autowired
     private FileManager manager;
     @GetMapping

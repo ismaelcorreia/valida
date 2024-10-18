@@ -1,29 +1,37 @@
 package com.ideafactory.valida.utils;
 
-import org.apache.pdfbox.cos.COSDictionary;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
 import org.apache.pdfbox.pdmodel.interactive.digitalsignature.PDSignature;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
+import java.util.Objects;
 
 
 @Component
-public class PdfVerifier {
+public class FileManager {
+
+    private static final Logger log = LoggerFactory.getLogger(FileManager.class);
 
     public boolean isPdfSigned(String filePath) {
+        return isPdfSigned(new File(filePath));
+    }
+    public boolean isPdfSigned(File file) {
 
-        try (PDDocument document = PDDocument.load(new File(filePath))) {
+        try (PDDocument document = PDDocument.load(file)) {
             List<PDSignature> signatures = document.getSignatureDictionaries();
             return signatures != null && !signatures.isEmpty();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
             return false;
         }
     }
@@ -50,31 +58,32 @@ public class PdfVerifier {
     }
 
 
-    public PDDocumentInformation printPdfProperties(String filePath) {
-        try (PDDocument document = PDDocument.load(new File(filePath))) {
+    public static File fromMultipartFileToFile(MultipartFile multipartFile) throws IOException {
+        File file = new File(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(multipartFile.getBytes());
+        }
+        return file;
+    }
+
+
+    public PDDocumentInformation getPdfProperties(File file) {
+        try (PDDocument document = PDDocument.load(file)) {
             return document.getDocumentInformation();
-//            PDDocumentInformation info = document.getDocumentInformation();
-//            System.out.println("Título: " + info.getTitle());
-//            System.out.println("Autor: " + info.getAuthor());
-//            System.out.println("Assunto: " + info.getSubject());
-//            System.out.println("Palavras-chave: " + info.getKeywords());
-//
-//            System.out.println("Data de Criação: " +  formatter.format(info.getCreationDate().getTime()));
-//            if( info.getModificationDate() != null){
-//                System.out.println("Data de Modificação: " +formatter.format(info.getModificationDate().getTime()));
-//            }
-//            System.out.println("Criador: " + info.getCreator());
-//            System.out.println("Produtor: " + info.getProducer());
-//            System.out.println("Número de Páginas: " + document.getNumberOfPages());
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
         return null;
     }
 
 
     public String extractTextFromPdf(String filePath) {
-        try (PDDocument document = PDDocument.load(new File(filePath))) {
+        return extractTextFromPdf(new File(filePath));
+    }
+
+
+    public String extractTextFromPdf(File file) {
+        try (PDDocument document = PDDocument.load(file)) {
             PDFTextStripper pdfStripper = new PDFTextStripper();
             return pdfStripper.getText(document);
         } catch (IOException e) {

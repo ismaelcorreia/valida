@@ -1,6 +1,6 @@
 package com.ideafactory.valida;
 
-import com.ideafactory.valida.utils.PdfVerifier;
+import com.ideafactory.valida.utils.FileManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +13,7 @@ class ValidaApplicationTests {
 
 
     @Autowired
-    private PdfVerifier pdfVerifier;
+    private FileManager fileManager;
 
     static final String testDocument = "teste.pdf";
 
@@ -22,17 +22,17 @@ class ValidaApplicationTests {
 
     @Test
     public void testIsPdfSigned() {
-        assertTrue(pdfVerifier.isPdfSigned(testFakerDocument));
+        assertTrue(fileManager.isPdfSigned(testFakerDocument));
     }
 
     @Test
     public void testPrintSignatureDetails() {
-        pdfVerifier.printSignatureDetails(testFakerDocument);
+        fileManager.printSignatureDetails(testFakerDocument);
     }
 
     @Test
     public void testPrintDetails() {
-        pdfVerifier.printPdfProperties(testFakerDocument);
+        fileManager.getPdfProperties(testFakerDocument);
     }
 
 }

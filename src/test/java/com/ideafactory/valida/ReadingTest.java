@@ -1,6 +1,6 @@
 package com.ideafactory.valida;
 
-import com.ideafactory.valida.utils.PdfVerifier;
+import com.ideafactory.valida.utils.FileManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,10 +16,10 @@ public class ReadingTest {
     static final String testFakerDocument = "teste-faker.pdf";
     static final String testProof= "teste-proof.pdf";
 
-    static PdfVerifier pdfVerifier;
+    static FileManager fileManager;
     @BeforeAll
     static void setup() {
-        pdfVerifier = new PdfVerifier();
+        fileManager = new FileManager();
     }
 
     @Test
@@ -29,29 +29,12 @@ public class ReadingTest {
 
     @Test
     public void testIsPdfSigned() {
-        assertTrue(pdfVerifier.isPdfSigned(testFakerDocument));
+        assertTrue(fileManager.isPdfSigned(testFakerDocument));
     }
 
     @Test
     public void testPrintSignatureDetails() {
-        pdfVerifier.printSignatureDetails(testFakerDocument);
+        fileManager.printSignatureDetails(testFakerDocument);
     }
 
-    @Test
-    public void testPrintDetails() {
-//        pdfVerifier.printPdfProperties(testProof);
-//        Produtor: iText® 7.0.5 ©2000-2017 iText Group NV (AGPL-version);
-//        modified using iText® 5.5.13.3 ©2000-2022 iText Group NV (AGPL-version)
-
-        pdfVerifier.printPdfProperties(testDocument);
-    }
-
-    @Test
-    public void testPrintDetails() {
-//        pdfVerifier.printPdfProperties(testProof);
-//        Produtor: iText® 7.0.5 ©2000-2017 iText Group NV (AGPL-version);
-//        modified using iText® 5.5.13.3 ©2000-2022 iText Group NV (AGPL-version)
-
-        pdfVerifier.printPdfProperties(testDocument);
-    }
 }
